@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI Ekonomi Fase F - Tujuan Pembelajaran: Perpajakan (Deep Learning)</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        naker: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow-sky': '0 0 20px rgba(56, 189, 248, 0.4)',
+                        'glass': '0 8px 32px 0 rgba(2, 132, 199, 0.12)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #ffffff 100%);
+            min-height: 100vh;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(186, 230, 253, 0.8);
+        }
+
+        .mascot-float {
+            animation: float 3.2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(1.5deg); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e0f2fe; }
+        ::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0284c7; }
+
+        .tab-active {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px 0 rgba(2, 132, 199, 0.35);
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen selection:bg-naker-500 selection:text-white">
+
+    <header class="sticky top-0 z-50 glass-panel border-b border-naker-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-3.5">
+                <div class="relative">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-naker-600 via-naker-500 to-sky-400 rounded-2xl flex items-center justify-center text-white shadow-glow-sky transform rotate-2 hover:rotate-0 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-sky-500"></span>
+                    </span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-base sm:text-lg font-black text-slate-900 tracking-tight">MPI Ekonomi Deep Learning</h1>
+                        <span class="bg-naker-100 text-naker-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase border border-naker-200">Kelas 11 / Fase F</span>
+                    </div>
+                    <p class="text-xs text-naker-600 font-semibold flex items-center gap-1">
+                        <span>🏛️ TP: Perpajakan Nasional & Daerah</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3 bg-white border border-naker-200 px-3.5 py-1.5 rounded-xl shadow-sm">
+                <div class="w-8 h-8 rounded-lg bg-naker-100 text-naker-700 flex items-center justify-center font-bold text-xs">
+                    SPY
+                </div>
+                <div class="text-right text-xs">
+                    <span class="block font-bold text-slate-800">Sangaji Panji Yuda, SE.</span>
+                    <span class="text-[11px] text-naker-600 font-medium">SMAN 1 Parongpong</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+
+        <!-- Tab Navigation -->
+        <nav class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-naker-100/70 p-1.5 rounded-2xl border border-naker-200/80 shadow-inner">
+            <button onclick="switchTab('tahap1')" id="tab-tahap1" class="tab-btn tab-active py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+                <span>🚀 1. Pengantar & Eksplorasi</span>
+            </button>
+            <button onclick="switchTab('tahap2')" id="tab-tahap2" class="tab-btn text-slate-600 hover:bg-white/70 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+                <span>💡 2. Pendalaman Materi</span>
+            </button>
+            <button onclick="switchTab('tahap3')" id="tab-tahap3" class="tab-btn text-slate-600 hover:bg-white/70 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+                <span>🎯 3. Kuis Evaluasi HOTS</span>
+            </button>
+            <button onclick="switchTab('tahap4')" id="tab-tahap4" class="tab-btn text-slate-600 hover:bg-white/70 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+                <span>📊 4. Dashboard & Refleksi</span>
+            </button>
+        </nav>
+
+        <!-- Mascot Dialog Box -->
+        <div id="mascot-container" class="glass-panel p-4 rounded-2xl flex items-center gap-4 sm:gap-6 border-l-4 border-l-naker-500 shadow-glass transition-all duration-300">
+            <div class="relative flex-shrink-0">
+                <div id="mascot-svg-wrapper" class="w-16 h-16 sm:w-20 sm:h-20 mascot-float cursor-pointer hover:scale-105 transition-transform" onclick="triggerMascotTrick()">
+                    <svg id="mascot-svg" viewBox="0 0 120 120" class="w-full h-full drop-shadow-md">
+                        <defs>
+                            <linearGradient id="econBotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#38bdf8" />
+                                <stop offset="100%" stop-color="#0284c7" />
+                            </linearGradient>
+                            <linearGradient id="faceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0f172a" />
+                                <stop offset="100%" stop-color="#1e293b" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="45" y="12" width="30" height="10" rx="3" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+                        <rect x="36" y="20" width="48" height="6" rx="2" fill="#0369a1"/>
+                        <rect x="24" y="26" width="72" height="72" rx="18" fill="url(#econBotGrad)" stroke="#ffffff" stroke-width="3"/>
+                        <rect x="18" y="48" width="8" height="18" rx="4" fill="#0284c7"/>
+                        <rect x="94" y="48" width="8" height="18" rx="4" fill="#0284c7"/>
+                        <rect x="32" y="34" width="56" height="40" rx="12" fill="url(#faceGrad)"/>
+                        <circle id="eye-left" cx="48" cy="50" r="5" fill="#38bdf8"/>
+                        <circle id="eye-right" cx="72" cy="50" r="5" fill="#38bdf8"/>
+                        <circle cx="49" cy="48" r="1.8" fill="#ffffff"/>
+                        <circle cx="73" cy="48" r="1.8" fill="#ffffff"/>
+                        <path id="mascot-mouth" d="M 48 62 Q 60 69 72 62" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                        <circle id="mascot-light" cx="60" cy="104" r="4" fill="#10b981" class="animate-pulse"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="flex-grow">
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="font-bold text-sm text-slate-900 flex items-center gap-1">
+                        <span>EconBot Mentor</span>
+                    </span>
+                    <span class="text-[10px] bg-naker-100 text-naker-800 font-bold px-2 py-0.5 rounded-md border border-naker-200">Ahli Sistem Perpajakan Nasional</span>
+                </div>
+                <p id="mascot-dialog" class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                    "Halo ekonom muda! Mengapa pajak disebut sebagai tulang punggung utama pembangunan negara? Mari kita eksplorasi bersama!"
+                </p>
+            </div>
+        </div>
+
+        <section id="content-tahap1" class="tab-content flex flex-col gap-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl shadow-glass border border-naker-200">
+                
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-gradient-to-r from-naker-600 to-sky-500 text-white font-black px-3.5 py-1.5 rounded-xl text-xs tracking-wider uppercase shadow-md">
+                        Tahap 1
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Pengantar & Eksplorasi Awal: Mengapa Kita Harus Membayar Pajak?</h2>
+                </div>
+
+                <!-- Narasi Pembuka Konteks -->
+                <div class="bg-gradient-to-br from-white via-naker-50/60 to-sky-50/40 p-6 rounded-2xl border border-naker-200/80 mb-6 shadow-sm">
+                    <div class="flex items-center gap-2 mb-3 text-naker-700 font-bold text-base">
+                        <svg class="w-5 h-5 text-naker-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Kontekstualisasi Peran Pajak dalam Pembangunan Ekonomi</span>
+                    </div>
+                    
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify mb-3">
+                        Setiap kali kita melintas di jalan raya, menggunakan fasilitas jembatan penyeberangan, bersekolah di lembaga negeri, atau mendapatkan layanan kesehatan di puskesmas, seluruh pembiayaan fasilitas tersebut sebagian besar bersumber dari uang pajak yang dihimpun oleh negara.
+                    </p>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify mb-4">
+                        Pajak bukan sekadar kewajiban hukum yang memaksa, melainkan instrumen gotong-royong nasional (kontrak sosial) antara warga negara dan pemerintah demi tercapainya keadilan sosial serta kesejahteraan bersama.
+                    </p>
+
+                    <div class="bg-naker-100/80 p-3.5 rounded-xl border border-naker-300 text-xs text-naker-900 font-medium flex items-start gap-2.5">
+                        <span class="text-base">💭</span>
+                        <div>
+                            <strong>Refleksi Deep Learning:</strong> Apa yang akan terjadi pada fasilitas publik di daerah terpencil jika kesadaran masyarakat dalam membayar pajak menurun drastis?
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1 Interaksi Eksplorasi Awal -->
+                <div class="bg-white p-5 sm:p-6 rounded-2xl border border-naker-300 shadow-sm">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+                            <span class="w-3 h-3 bg-naker-500 rounded-full animate-ping"></span>
+                            <span>Interaksi Eksplorasi: Hakikat Pengeluaran Publik dan Pajak</span>
+                        </h3>
+                        <span class="text-[11px] bg-naker-100 text-naker-700 font-bold px-2 py-0.5 rounded-full">Analitis Kritis</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
+                        <strong>a. Instruksi:</strong> Ketika pemerintah menaikkan tarif pajak untuk produk impor tertentu demi melindungi produk industri dalam negeri (UMKM lokal), fenomena ini mencerminkan fungsi pajak sebagai...
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                        <button onclick="checkEksplorasi(1)" class="exp-btn text-left p-4 rounded-xl border-2 border-naker-200 hover:border-naker-500 bg-naker-50/40 hover:bg-naker-50 transition-all text-xs sm:text-sm">
+                            <span class="font-bold text-naker-800 block mb-1">Opsi A: Fungsi Regulasi (Regulerend)</span>
+                            Pajak digunakan sebagai alat pengatur kebijakan ekonomi untuk melindungi produsen domestik dan mengendalikan impor.
+                        </button>
+                        <button onclick="checkEksplorasi(2)" class="exp-btn text-left p-4 rounded-xl border-2 border-naker-200 hover:border-naker-500 bg-naker-50/40 hover:bg-naker-50 transition-all text-xs sm:text-sm">
+                            <span class="font-bold text-naker-800 block mb-1">Opsi B: Fungsi Budgeter Murni semata</span>
+                            Pajak hanya sekadar untuk mencetak uang kas tanpa ada pengaruh apa pun terhadap perilaku produsen lokal.
+                        </button>
+                    </div>
+
+                    <div id="feedback-eksplorasi" class="hidden p-4 rounded-xl text-xs sm:text-sm leading-relaxed transition-all"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="content-tahap2" class="tab-content hidden flex flex-col gap-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl shadow-glass border border-naker-200">
+                
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-gradient-to-r from-naker-600 to-sky-500 text-white font-black px-3.5 py-1.5 rounded-xl text-xs tracking-wider uppercase shadow-md">
+                        Tahap 2
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Pendalaman Materi: Sistem, Jenis, dan Tarif Pajak</h2>
+                </div>
+
+                <!-- Sub Materi 1 -->
+                <div class="bg-white border border-naker-200 p-5 sm:p-6 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-base sm:text-lg text-naker-900 mb-3 border-b border-naker-100 pb-2.5 flex items-center gap-2">
+                        <span class="bg-naker-100 text-naker-700 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black">1</span>
+                        Pengelompokan Pajak: Pusat vs Daerah
+                    </h3>
+                    
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 text-justify">
+                        Pajak di Indonesia diklasifikasikan berdasarkan lembaga pemungutnya menjadi <strong>Pajak Pusat</strong> (dikelola Direktorat Jenderal Pajak Kementerian Keuangan untuk anggaran nasional seperti PPh, PPN, PBB Perkebunan/Pertambangan) dan <strong>Pajak Daerah</strong> (dikelola oleh Pemda Provinsi/Kabupaten/Kota untuk anggaran lokal seperti Pajak Kendaraan Bermotor, Pajak Restoran, dan Pajak Hotel).
+                    </p>
+
+                    <!-- Interaksi Wajib 1 -->
+                    <div class="bg-gradient-to-r from-naker-50 to-sky-50 border border-naker-300 p-4 sm:p-5 rounded-xl">
+                        <div class="mb-3">
+                            <span class="text-[10px] font-black bg-naker-600 text-white px-2.5 py-1 rounded-md uppercase">Interaksi Wajib 1 (Menjodohkan / Klasifikasi)</span>
+                            <h4 class="text-xs sm:text-sm font-bold text-slate-900 mt-1">Klasifikasi Jenis Pemungutan Pajak</h4>
+                        </div>
+                        
+                        <p class="text-xs text-slate-600 mb-3"><strong>a. Instruksi:</strong> Tentukan apakah jenis pajak di bawah ini termasuk Pajak Pusat atau Pajak Daerah!</p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3 text-xs">
+                            <div class="bg-white p-3 rounded-xl border border-naker-200">
+                                <label class="font-semibold text-slate-800 block mb-1">1. Pajak Pertambahan Nilai (PPN) atas transaksi barang mewah & ritel.</label>
+                                <select id="int1-select1" class="w-full mt-1 border border-naker-300 rounded-lg p-2 text-xs bg-naker-50/50 focus:outline-none focus:ring-2 focus:ring-naker-500">
+                                    <option value="">-- Pilih Jenis Pajak --</option>
+                                    <option value="pusat">Pajak Pusat</option>
+                                    <option value="daerah">Pajak Daerah</option>
+                                </select>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-naker-200">
+                                <label class="font-semibold text-slate-800 block mb-1">2. Pajak Kendaraan Bermotor (PKB) & Bea Balik Nama.</label>
+                                <select id="int1-select2" class="w-full mt-1 border border-naker-300 rounded-lg p-2 text-xs bg-naker-50/50 focus:outline-none focus:ring-2 focus:ring-naker-500">
+                                    <option value="">-- Pilih Jenis Pajak --</option>
+                                    <option value="pusat">Pajak Pusat</option>
+                                    <option value="daerah">Pajak Daerah</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button onclick="verifyInteraksi1()" class="bg-naker-600 hover:bg-naker-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-md">
+                            Periksa Jawaban Interaksi 1
+                        </button>
+                        
+                        <div id="int1-feedback" class="hidden mt-3 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+
+                <!-- Sub Materi 2 -->
+                <div class="bg-white border border-naker-200 p-5 sm:p-6 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-base sm:text-lg text-naker-900 mb-3 border-b border-naker-100 pb-2.5 flex items-center gap-2">
+                        <span class="bg-naker-100 text-naker-700 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black">2</span>
+                        Sistem & Tarif Pemungutan Pajak (Progresif, Proporsional, Regresif, Degresif)
+                    </h3>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 text-justify">
+                        Tarif pajak memiliki struktur perhitungan yang bervariasi: <strong>Tarif Progresif</strong> (persentase meningkat seiring bertambahnya dasar pengenaan pajak, lazim pada PPh Orang Pribadi), <strong>Tarif Proporsional</strong> (persentase tetap berapapun nilainya, misal PPN 11%), serta <strong>Tarif Degresif/Regresif</strong> (persentase menurun saat dasar pengenaan bertambah).
+                    </p>
+
+                    <!-- Interaksi Wajib 2 -->
+                    <div class="bg-gradient-to-r from-naker-50 to-sky-50 border border-naker-300 p-4 sm:p-5 rounded-xl">
+                        <div class="mb-3">
+                            <span class="text-[10px] font-black bg-naker-600 text-white px-2.5 py-1 rounded-md uppercase">Interaksi Wajib 2 (Mengurutkan / Analisis Mekanisme)</span>
+                            <h4 class="text-xs sm:text-sm font-bold text-slate-900 mt-1">Simulasi Mekanisme Tarif Progresif Penghasilan</h4>
+                        </div>
+                        
+                        <p class="text-xs text-slate-600 mb-3"><strong>a. Instruksi:</strong> Susunlah urutan tahapan implementasi pajak penghasilan progresif dari tingkat pendapatan terendah hingga lapisan tarif tertinggi (Urutan 1 sampai 4).</p>
+
+                        <div id="policy-container" class="space-y-2 mb-3 text-xs">
+                            <div class="policy-item bg-white p-2.5 rounded-xl border border-naker-300 flex items-center justify-between" data-id="2">
+                                <span>💼 Wajib pajak dengan penghasilan menengah dikenakan lapis tarif tarif 15%</span>
+                                <div class="flex gap-1">
+                                    <button onclick="movePolicyItem(this, -1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▲</button>
+                                    <button onclick="movePolicyItem(this, 1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▼</button>
+                                </div>
+                            </div>
+                            <div class="policy-item bg-white p-2.5 rounded-xl border border-naker-300 flex items-center justify-between" data-id="1">
+                                <span>📄 Pendapatan bersih wajib pajak dihitung setelah dikurangi Penghasilan Tidak Kena Pajak (PTKP)</span>
+                                <div class="flex gap-1">
+                                    <button onclick="movePolicyItem(this, -1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▲</button>
+                                    <button onclick="movePolicyItem(this, 1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▼</button>
+                                </div>
+                            </div>
+                            <div class="policy-item bg-white p-2.5 rounded-xl border border-naker-300 flex items-center justify-between" data-id="4">
+                                <span>👑 Kelompok penghasilan tertinggi di atas Rp 5 miliar dikenakan lapis tarif puncak 35%</span>
+                                <div class="flex gap-1">
+                                    <button onclick="movePolicyItem(this, -1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▲</button>
+                                    <button onclick="movePolicyItem(this, 1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▼</button>
+                                </div>
+                            </div>
+                            <div class="policy-item bg-white p-2.5 rounded-xl border border-naker-300 flex items-center justify-between" data-id="3">
+                                <span>📈 Lapisan penghasilan berikutnya dikenakan tarif 25% dan 30% secara progresif</span>
+                                <div class="flex gap-1">
+                                    <button onclick="movePolicyItem(this, -1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▲</button>
+                                    <button onclick="movePolicyItem(this, 1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▼</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="verifyInteraksi2()" class="bg-naker-600 hover:bg-naker-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-md">
+                            Validasi Urutan Mekanisme Progresif
+                        </button>
+                        
+                        <div id="int2-feedback" class="hidden mt-3 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+
+                <!-- Sub Materi 3 -->
+                <div class="bg-white border border-naker-200 p-5 sm:p-6 rounded-2xl shadow-sm">
+                    <h3 class="font-bold text-base sm:text-lg text-naker-900 mb-3 border-b border-naker-100 pb-2.5 flex items-center gap-2">
+                        <span class="bg-naker-100 text-naker-700 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black">3</span>
+                        Asas, Hambatan, dan Perbedaan Pajak dengan Pungutan Resmi Lainnya
+                    </h3>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 text-justify">
+                        Pemungutan pajak berlandaskan asas keadilan, kepastian hukum, dan kesederhanaan. Hambatan perpajakan umumnya berupa <em>tax avoidance</em> (penghindaran pajak legal) dan <em>tax evasion</em> (penggelapan pajak ilegal yang melanggar hukum).
+                    </p>
+
+                    <!-- Interaksi Wajib 3 -->
+                    <div class="bg-gradient-to-r from-naker-50 to-sky-50 border border-naker-300 p-4 sm:p-5 rounded-xl">
+                        <div class="mb-3">
+                            <span class="text-[10px] font-black bg-naker-600 text-white px-2.5 py-1 rounded-md uppercase">Interaksi Wajib 3 (Studi Kasus Kepatuhan Pajak)</span>
+                            <h4 class="text-xs sm:text-sm font-bold text-slate-900 mt-1">Analisis Hambatan Perpajakan di Masyarakat</h4>
+                        </div>
+                        
+                        <p class="text-xs text-slate-600 mb-3">
+                            <strong>a. Instruksi:</strong> Seorang wajib pajak dengan sengaja merekayasa laporan pembukuan keuangan perusahaannya agar terhindar dari kewajiban membayar pajak terutang. Tindakan ini dikategorikan sebagai...
+                        </p>
+
+                        <div class="space-y-2 mb-3 text-xs">
+                            <button onclick="verifyInteraksi3('A')" class="w-full text-left p-3 rounded-xl bg-white border border-naker-200 hover:border-naker-500 font-medium transition-all">
+                                A. Tax Evasion (Penggelapan pajak secara ilegal yang merupakan pelanggaran hukum berat).
+                            </button>
+                            <button onclick="verifyInteraksi3('B')" class="w-full text-left p-3 rounded-xl bg-white border border-naker-200 hover:border-naker-500 font-medium transition-all">
+                                B. Tax Avoidance (Penghindaran pajak yang aman dan sepenuhnya legal tanpa rekayasa palsu).
+                            </button>
+                        </div>
+
+                        <div id="int3-feedback" class="hidden p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="content-tahap3" class="tab-content hidden flex flex-col gap-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl shadow-glass border border-naker-200">
+                
+                <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-gradient-to-r from-naker-600 to-sky-500 text-white font-black px-3.5 py-1.5 rounded-xl text-xs tracking-wider uppercase shadow-md">
+                            Tahap 3
+                        </span>
+                        <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Kuis Evaluasi HOTS Perpajakan (10 Soal Berbasis Deep Learning)</h2>
+                    </div>
+                    <div class="bg-naker-100 border border-naker-300 text-naker-900 px-4 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5">
+                        <span>🏆 Skor Sementara:</span>
+                        <span id="current-score-display" class="text-sm font-black text-naker-600">0</span>
+                        <span>/ 100</span>
+                    </div>
+                </div>
+
+                <div class="w-full bg-naker-100 rounded-full h-3 mb-6 overflow-hidden border border-naker-200 p-0.5">
+                    <div id="quiz-progress-bar" class="bg-gradient-to-r from-naker-500 via-sky-400 to-naker-600 h-full rounded-full transition-all duration-300" style="width: 10%"></div>
+                </div>
+
+                <div id="quiz-container" class="bg-white border border-naker-200 p-5 sm:p-7 rounded-2xl shadow-sm"></div>
+
+                <div class="flex justify-between items-center mt-6">
+                    <button id="btn-prev-q" onclick="navigateQuiz(-1)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition-all disabled:opacity-40">
+                        ← Soal Sebelumnya
+                    </button>
+                    <span id="quiz-question-number" class="text-xs font-black text-naker-700 bg-naker-50 px-3 py-1 rounded-lg border border-naker-200">
+                        Soal 1 dari 10
+                    </span>
+                    <button id="btn-next-q" onclick="navigateQuiz(1)" class="bg-gradient-to-r from-naker-600 to-sky-500 hover:from-naker-700 hover:to-sky-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-all shadow-md">
+                        Soal Berikutnya →
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="content-tahap4" class="tab-content hidden flex flex-col gap-6">
+            <div class="glass-panel p-6 sm:p-10 rounded-3xl shadow-glass border border-naker-200 text-center">
+                <div class="max-w-xl mx-auto">
+                    
+                    <div class="inline-flex p-4 bg-naker-100 rounded-3xl mb-4 text-naker-600 shadow-inner">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-1">
+                        Dashboard Capaian Pembelajaran
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mb-6">
+                        Laporan Evaluasi Deep Learning TP: Perpajakan Nasional & Daerah
+                    </p>
+
+                    <div class="relative w-40 h-40 mx-auto mb-6 flex items-center justify-center bg-gradient-to-tr from-naker-600 via-naker-500 to-sky-400 rounded-full text-white shadow-glow-sky border-4 border-white">
+                        <div>
+                            <span id="final-score" class="text-5xl font-black tracking-tight">0</span>
+                            <span class="text-xs block font-bold opacity-80 uppercase tracking-widest mt-1">Skor Akhir</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 mb-6 text-left">
+                        <div class="bg-emerald-50/90 p-4 rounded-2xl border border-emerald-200 shadow-sm">
+                            <span class="text-xs text-emerald-700 font-bold block mb-1">Jawaban Benar</span>
+                            <span id="correct-count" class="text-xl font-black text-emerald-800">0 Soal</span>
+                        </div>
+                        <div class="bg-rose-50/90 p-4 rounded-2xl border border-rose-200 shadow-sm">
+                            <span class="text-xs text-rose-700 font-bold block mb-1">Salah / Belum Dijawab</span>
+                            <span id="wrong-count" class="text-xl font-black text-rose-800">0 Soal</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-naker-200 text-left text-xs mb-6 space-y-2.5 shadow-sm">
+                        <h4 class="font-bold text-slate-900 text-sm border-b border-naker-100 pb-2">
+                            Analisis Capaian Berdasarkan Variasi Soal:
+                        </h4>
+                        <div class="flex justify-between items-center"><span class="text-slate-600">Pilihan Ganda (PG):</span><span id="type-pg" class="font-bold text-naker-700">0 / 4</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-600">Pilihan Ganda Kompleks (PGK):</span><span id="type-pgk" class="font-bold text-naker-700">0 / 2</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-600">Benar / Salah (BS):</span><span id="type-bs" class="font-bold text-naker-700">0 / 3</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-600">Urutkan / Matching:</span><span id="type-drag" class="font-bold text-naker-700">0 / 1</span></div>
+                    </div>
+
+                    <div id="reflective-box" class="p-5 rounded-2xl text-xs sm:text-sm text-left leading-relaxed mb-6 border"></div>
+
+                    <button onclick="restartQuiz()" class="w-full bg-gradient-to-r from-naker-600 to-sky-500 hover:from-naker-700 hover:to-sky-600 text-white font-extrabold py-3.5 rounded-2xl text-sm transition-all shadow-lg hover:shadow-xl">
+                        🔄 Ulangi Evaluasi / Belajar Lagi
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <canvas id="confetti-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-50"></canvas>
+
+    </main>
+
+    <footer class="bg-white/80 border-t border-naker-200 mt-auto py-4 text-center text-xs text-slate-500">
+        <p>© 2026 Media Pembelajaran Digital Ekonomi • Sangaji Panji Yuda, SE. (SMAN 1 Parongpong)</p>
+    </footer>
+
+    <script>
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+        }
+
+        function playSound(type) {
+            try {
+                initAudio();
+                if (!audioCtx) return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.08);
+                    osc.frequency.setValueAtTime(783.99, now + 0.16);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+                    osc.start(now);
+                    osc.stop(now + 0.45);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.setValueAtTime(174.61, now + 0.12);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                    osc.start(now);
+                    osc.stop(now + 0.4);
+                } else if (type === 'finish') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.12);
+                    osc.frequency.setValueAtTime(783.99, now + 0.24);
+                    osc.frequency.setValueAtTime(1046.50, now + 0.36);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
+                    osc.start(now);
+                    osc.stop(now + 0.7);
+                }
+            } catch (e) {
+                console.log("Audio context muted or user interaction required.");
+            }
+        }
+
+        function setMascotState(state, message) {
+            const mouth = document.getElementById('mascot-mouth');
+            const light = document.getElementById('mascot-light');
+            const dialog = document.getElementById('mascot-dialog');
+
+            if (message) dialog.innerText = message;
+
+            if (state === 'happy') {
+                mouth.setAttribute('d', 'M 44 58 Q 60 72 76 58');
+                light.setAttribute('fill', '#10b981');
+                playSound('correct');
+            } else if (state === 'sad') {
+                mouth.setAttribute('d', 'M 46 68 Q 60 56 74 68');
+                light.setAttribute('fill', '#ef4444');
+                playSound('wrong');
+            } else if (state === 'thinking') {
+                mouth.setAttribute('d', 'M 46 62 L 74 62');
+                light.setAttribute('fill', '#f59e0b');
+            } else {
+                mouth.setAttribute('d', 'M 48 62 Q 60 69 72 62');
+                light.setAttribute('fill', '#38bdf8');
+            }
+        }
+
+        function triggerMascotTrick() {
+            setMascotState('happy', '💡 "Ingat! Pajak yang dibayarkan warga negara langsung dikelola negara untuk membiayai fasilitas publik dan pelayanan sosial!"');
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-slate-600');
+            });
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.add('tab-active');
+            activeBtn.classList.remove('text-slate-600');
+
+            if (tabId === 'tahap4') {
+                calculateFinalDashboard();
+            }
+        }
+
+        function checkEksplorasi(option) {
+            const fb = document.getElementById('feedback-eksplorasi');
+            fb.classList.remove('hidden', 'bg-rose-50', 'bg-emerald-50', 'text-rose-900', 'text-emerald-900', 'border-rose-300', 'border-emerald-300');
+
+            if (option === 1) {
+                fb.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-300');
+                fb.innerHTML = `
+                    <strong>✅ Tepat Sekali! (Analisis Kritis Sempurna)</strong><br>
+                    <strong>Penjelasan Konseptual:</strong> Fungsi regulasi (regulerend) memungkinkan pemerintah menggunakan tarif pajak untuk mengatur kegiatan ekonomi, seperti melindungi industri dalam negeri dari serbuan barang impor.
+                `;
+                setMascotState('happy', 'Analisis awal kamu luar biasa! Mari pelajari sistem dan pengelompokan perpajakan lebih dalam.');
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-300');
+                fb.innerHTML = `
+                    <strong>❌ Kurang Tepat.</strong><br>
+                    <strong>Penjelasan Konseptual:</strong> Pajak memiliki fungsi mengatur (regulerend) selain fungsi budgeter (pemasukan kas).
+                `;
+                setMascotState('sad', 'Ingat kembali bahwa instrumen pajak aktif mengatur kegiatan ekonomi dan melindungi produsen lokal.');
+            }
+        }
+
+        function verifyInteraksi1() {
+            const v1 = document.getElementById('int1-select1').value;
+            const v2 = document.getElementById('int1-select2').value;
+            const fb = document.getElementById('int1-feedback');
+
+            fb.classList.remove('hidden', 'bg-emerald-50', 'bg-rose-50', 'text-emerald-900', 'text-rose-900');
+
+            if (v1 === 'pusat' && v2 === 'daerah') {
+                fb.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-300');
+                fb.innerHTML = `
+                    <strong>🎉 Benar! (Penjodohan Sempurna)</strong><br>
+                    <strong>Penjelasan Konseptual:</strong> PPN dikelola oleh Pemerintah Pusat melalui DJP Kemenkeu, sedangkan PKB dipungut dan dikelola oleh Pemerintah Daerah (Provinsi/Kabupaten).
+                `;
+                setMascotState('happy', 'Sempurna! Kamu memahami pemetaan pajak pusat dan daerah dengan sangat baik.');
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-300');
+                fb.innerHTML = `
+                    <strong>⚠️ Belum Tepat.</strong><br>
+                    <strong>Penjelasan:</strong> Cermati kembali instansi pengelola pajak pusat vs daerah.
+                `;
+                setMascotState('sad', 'Ayo cermati kembali pembagian kewenangan pemungutan pajaknya.');
+            }
+        }
+
+        function movePolicyItem(btn, direction) {
+            const item = btn.closest('.policy-item');
+            const container = document.getElementById('policy-container');
+            if (direction === -1 && item.previousElementSibling) {
+                container.insertBefore(item, item.previousElementSibling);
+            } else if (direction === 1 && item.nextElementSibling) {
+                container.insertBefore(item.nextElementSibling, item);
+            }
+        }
+
+        function verifyInteraksi2() {
+            const items = document.querySelectorAll('.policy-item');
+            const currentOrder = Array.from(items).map(el => parseInt(el.getAttribute('data-id')));
+            const correctOrder = [1, 2, 3, 4];
+            const isCorrect = JSON.stringify(currentOrder) === JSON.stringify(correctOrder);
+
+            const fb = document.getElementById('int2-feedback');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'bg-rose-50', 'text-emerald-900', 'text-rose-900');
+
+            if (isCorrect) {
+                fb.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-300');
+                fb.innerHTML = `
+                    <strong>🚀 Sempurna! Urutan Mekanisme Progresif Tepat:</strong><br>
+                    Penghitungan PTKP → Lapisan Tarif Menengah (15%) → Lapisan Tarif Lanjutan (25%/30%) → Lapisan Tarif Puncak (35%).
+                `;
+                setMascotState('happy', 'Luar biasa! Urutan mekanisme tarif progresif sudah sangat akurat.');
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-300');
+                fb.innerHTML = `
+                    <strong>❌ Urutan Belum Tepat.</strong><br>
+                    <strong>Petunjuk:</strong> Mulai dari penghitungan dasar PTKP, kenaikan lapis tarif menengah, hingga tarif puncak tertinggi.
+                `;
+                setMascotState('thinking', 'Susun dari dasar penghitungan pendapatan bersih hingga lapis tarif tertinggi.');
+            }
+        }
+
+        function verifyInteraksi3(choice) {
+            const fb = document.getElementById('int3-feedback');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'bg-rose-50', 'text-emerald-900', 'text-rose-900');
+
+            if (choice === 'A') {
+                fb.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-300');
+                fb.innerHTML = `
+                    <strong>✅ Analisis Tepat!</strong><br>
+                    <strong>Penjelasan Konseptual:</strong> Tax evasion adalah tindakan melanggar hukum (ilegal) dengan cara memanipulasi atau merekayasa data keuangan agar pajak terutang berkurang secara tidak sah.
+                `;
+                setMascotState('happy', 'Analisis hambatan perpajakan sangat tajam dan tepat sasaran!');
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-300');
+                fb.innerHTML = `
+                    <strong>❌ Analisis Kurang Tepat.</strong><br>
+                    <strong>Penjelasan:</strong> Rekayasa pembukuan palsu merupakan pelanggaran hukum berat (tax evasion), bukan tax avoidance yang legal.
+                `;
+                setMascotState('sad', 'Ingat bahwa tindakan ilegal dalam menghindari pajak disebut penggelapan pajak (tax evasion).');
+            }
+        }
+
+        const quizData = [
+            {
+                id: 1,
+                type: 'pg',
+                question: "Pemerintah mengenakan cukai yang tinggi terhadap hasil tembakau dan minuman beralkohol. Dari sudut pandang kebijakan ekonomi, apa fungsi utama dari pengenaan tarif cukai tersebut?",
+                options: [
+                    "Fungsi regulasi (regulerend) untuk mengendalikan konsumsi barang yang berdampak negatif bagi masyarakat.",
+                    "Fungsi semata-mata untuk membagikan deviden kepada seluruh investor asing di bursa saham.",
+                    "Fungsi anggaran murni untuk menghilangkan kewajiban bayar PPh bagi seluruh warga.",
+                    "Fungsi spekulatif untuk menaikkan harga saham perusahaan rokok secara instan."
+                ],
+                correct: 0,
+                explanation: "Cukai dan pajak tertentu memiliki fungsi reguler (pengatur) untuk mengerem konsumsi produk yang eksternalitasnya merugikan kesehatan publik."
+            },
+            {
+                id: 2,
+                type: 'bs',
+                question: "Pernyataan HOTS: 'Pajak Bumi dan Bangunan (PBB) sektor perkotaan dan perdesaan merupakan jenis pajak pusat yang dipungut langsung oleh kantor pajak pusat tanpa melibatkan pemerintah daerah.'",
+                options: ["BENAR", "SALAH"],
+                correct: 1,
+                explanation: "SALAH. Sejak diberlakukannya desentralisasi fiskal, PBB Perdesaan dan Perkotaan (PBB-P2) telah dialihkan menjadi Pajak Daerah yang dikelola oleh Kabupaten/Kota."
+            },
+            {
+                id: 3,
+                type: 'pgk',
+                question: "Manakah yang merupakan ciri-ciri pokok dari sistem pemungutan pajak yang sah di Indonesia? (Pilih semua yang tepat)",
+                options: [
+                    "Bersifat memaksa berdasarkan undang-undang",
+                    "Tidak mendapatkan imbalan (kontraprestasi) secara langsung yang dapat dirasakan seketika",
+                    "Digunakan untuk membiayai pengeluaran rutin dan pembangunan pemerintah",
+                    "Besaran pungutan ditentukan secara sukarela oleh wajib pajak"
+                ],
+                correct: [0, 1, 2],
+                explanation: "Pajak bersifat wajib, diatur UU, tanpa kontraprestasi langsung individu, dan untuk kepentingan publik. Besaran pajak tidak sukarela."
+            },
+            {
+                id: 4,
+                type: 'drag',
+                question: "Urutkan tahapan utama dalam sistem administrasi perpajakan di Indonesia bagi Wajib Pajak Badan/Perorangan!",
+                items: [
+                    "1. Pendaftaran diri untuk memperoleh Nomor Pokok Wajib Pajak (NPWP)",
+                    "2. Penghitungan jumlah pajak terutang berdasarkan pembukuan atau omzet",
+                    "3. Pembayaran pajak ke kas negara melalui bank persepsi/pos",
+                    "4. Pelaporan Surat Pemberitahuan (SPT) Tahunan/Masa ke kantor pajak"
+                ],
+                correctOrder: [0, 1, 2, 3],
+                explanation: "Sistem administrasi pajak bermula dari kepemilikan NPWP, menghitung pajak terutang, melakukan pembayaran, hingga melaporkan SPT."
+            },
+            {
+                id: 5,
+                type: 'pg',
+                question: "Penerapan sistem tarif pajak progresif pada Pajak Penghasilan (PPh) Orang Pribadi bertujuan utama untuk mewujudkan...",
+                options: [
+                    "Prinsip keadilan vertikal, di mana wajib pajak berpenghasilan lebih tinggi menanggung beban pajak yang lebih besar secara persentase.",
+                    "Pemberian subsidi tunai kepada pengusaha besar agar modal usahanya semakin meningkat.",
+                    "Penyamarataan penghasilan seluruh warga negara tanpa memandang status sosial.",
+                    "Penghapusan seluruh beban pajak bagi pegawai golongan menengah kebawah."
+                ],
+                correct: 0,
+                explanation: "Tarif progresif mencerminkan keadilan vertikal di mana kemampuan bayar (ability to pay) yang lebih tinggi dikenakan tarif persentase yang lebih besar."
+            },
+            {
+                id: 6,
+                type: 'pgk',
+                question: "Manakah yang termasuk ke dalam jenis-jenis Pajak Daerah (Provinsi atau Kabupaten/Kota)? (Pilih semua yang tepat)",
+                options: [
+                    "Pajak Kendaraan Bermotor (PKB)",
+                    "Pajak Restoran dan Hotel",
+                    "Bea Masuk dan Cukai Ekspor",
+                    "Pajak Reklame"
+                ],
+                correct: [0, 1, 3],
+                explanation: "Bea masuk dan cukai adalah Pajak Pusat. PKB, restoran, hotel, dan reklame adalah jenis Pajak Daerah."
+            },
+            {
+                id: 7,
+                type: 'bs',
+                question: "Pernyataan HOTS: 'Tax avoidance adalah praktik rekayasa penghindaran pajak yang memanfaatkan celah hukum (gray area) secara legal, sedangkan tax evasion adalah penggelapan pajak secara ilegal.'",
+                options: ["BENAR", "SALAH"],
+                correct: 0,
+                explanation: "BENAR. Tax avoidance legal meskipun berada di celah hukum, sementara tax evasion adalah tindak kejahatan penggelapan pajak yang melanggar hukum."
+            },
+            {
+                id: 8,
+                type: 'pg',
+                question: "Apa perbedaan paling mendasar antara pajak resmi dengan retribusi daerah?",
+                options: [
+                    "Retribusi mengenakan kontraprestasi langsung yang dapat dinikmati pembayar (misal: parkir/kebersihan), sedangkan pajak tidak memberikan imbalan langsung.",
+                    "Pajak dipungut oleh preman lokal, sedangkan retribusi dipungut oleh presiden.",
+                    "Retribusi hanya dibayar oleh turis asing, sedangkan pajak dibayar hewan peliharaan.",
+                    "Tidak ada bedanya sama sekali karena kedua istilah tersebut memiliki arti hukum yang identik."
+                ],
+                correct: 0,
+                explanation: "Retribusi memiliki kontraprestasi langsung (jasa layanan spesifik yang dinikmati pembayar), berbeda dengan pajak yang bersifat umum tanpa balas jasa langsung."
+            },
+            {
+                id: 9,
+                type: 'bs',
+                question: "Pernyataan HOTS: 'Asas equality dalam pemungutan pajak menurut Adam Smith menyatakan bahwa pemungutan pajak harus disesuaikan dengan kemampuan masing-masing wajib pajak (ability to pay).'",
+                options: ["BENAR", "SALAH"],
+                correct: 0,
+                explanation: "BENAR. Asas equality (keadilan) menegaskan bahwa beban pajak harus didistribusikan secara adil sesuai kemampuan ekonominya."
+            },
+            {
+                id: 10,
+                type: 'pg',
+                question: "Mengapa kesadaran wajib pajak (tax compliance) sangat menentukan kemandirian fiskal suatu negara berkembang?",
+                options: [
+                    "Karena tingginya rasio kepatuhan pajak (tax ratio) memperkecil ketergantungan negara terhadap utang luar negeri.",
+                    "Karena pemerintah dapat mencetak uang tanpa batas tanpa inflasi jika rakyat rajin membayar pajak.",
+                    "Karena seluruh uang pajak akan dikembalikan dalam bentuk undian berhadiah tunai setiap bulan.",
+                    "Karena hukum pajak mewajibkan warga negara bekerja di kantor pajak."
+                ],
+                correct: 0,
+                explanation: "Kepatuhan pajak yang tinggi menaikkan tax ratio, sehingga penerimaan domestik kuat dan pembiayaan pembangunan tidak bergantung pada utang luar negeri."
+            }
+        ];
+
+        let currentQuestionIdx = 0;
+        let userAnswers = {};
+
+        function renderQuestion() {
+            const q = quizData[currentQuestionIdx];
+            const container = document.getElementById('quiz-container');
+
+            document.getElementById('quiz-question-number').innerText = `Soal ${currentQuestionIdx + 1} dari ${quizData.length}`;
+            document.getElementById('quiz-progress-bar').style.width = `${((currentQuestionIdx + 1) / quizData.length) * 100}%`;
+
+            let badgeType = '';
+            if (q.type === 'pg') badgeType = 'Pilihan Ganda';
+            else if (q.type === 'bs') badgeType = 'Benar / Salah';
+            else if (q.type === 'pgk') badgeType = 'Pilihan Ganda Kompleks';
+            else if (q.type === 'drag') badgeType = 'Urutkan Langkah';
+
+            let html = `
+                <div class="mb-4">
+                    <span class="text-[10px] font-black bg-naker-100 text-naker-800 px-3 py-1 rounded-md border border-naker-200 uppercase tracking-wider">${badgeType}</span>
+                    <h3 class="text-sm sm:text-base font-bold text-slate-900 mt-2.5 leading-relaxed">${q.question}</h3>
+                </div>
+            `;
+
+            if (q.type === 'pg' || q.type === 'bs') {
+                html += `<div class="space-y-2 mb-4">`;
+                q.options.forEach((opt, idx) => {
+                    const isSelected = userAnswers[q.id] === idx;
+                    const selectedClass = isSelected ? 'border-naker-500 bg-naker-50 font-bold ring-2 ring-naker-300' : 'border-slate-200 hover:border-naker-300 bg-white';
+                    html += `
+                        <button onclick="selectSingleAnswer(${q.id}, ${idx})" class="w-full text-left p-3.5 rounded-xl border transition-all text-xs sm:text-sm flex items-center justify-between ${selectedClass}">
+                            <span>${opt}</span>
+                            <span class="w-5 h-5 rounded-full border flex items-center justify-center text-xs ${isSelected ? 'border-naker-600 bg-naker-600 text-white' : 'border-slate-300'}">${isSelected ? '✓' : ''}</span>
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.type === 'pgk') {
+                const currentSelections = userAnswers[q.id] || [];
+                html += `<div class="space-y-2 mb-4">`;
+                q.options.forEach((opt, idx) => {
+                    const isChecked = currentSelections.includes(idx);
+                    const selectedClass = isChecked ? 'border-naker-500 bg-naker-50 font-bold ring-2 ring-naker-300' : 'border-slate-200 hover:border-naker-300 bg-white';
+                    html += `
+                        <button onclick="toggleMultipleAnswer(${q.id}, ${idx})" class="w-full text-left p-3.5 rounded-xl border transition-all text-xs sm:text-sm flex items-center justify-between ${selectedClass}">
+                            <span>${opt}</span>
+                            <span class="w-5 h-5 rounded border flex items-center justify-center text-xs ${isChecked ? 'border-naker-600 bg-naker-600 text-white' : 'border-slate-300'}">${isChecked ? '✓' : ''}</span>
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.type === 'drag') {
+                const currentOrder = userAnswers[q.id] || q.items.map((_, i) => i);
+                html += `<p class="text-xs text-slate-500 mb-2">Gunakan tombol panah untuk menyusun urutan langkah administrasi pajak secara logis:</p>`;
+                html += `<div id="drag-q-container" class="space-y-2 mb-4">`;
+                currentOrder.forEach((itemIdx) => {
+                    html += `
+                        <div class="drag-q-item bg-naker-50/50 p-3 rounded-xl border border-naker-200 flex items-center justify-between text-xs sm:text-sm" data-idx="${itemIdx}">
+                            <span class="font-medium text-slate-800">${q.items[itemIdx]}</span>
+                            <div class="flex gap-1">
+                                <button onclick="moveQuizOrder(${q.id}, ${itemIdx}, -1)" class="px-2.5 py-1 bg-naker-200 hover:bg-naker-300 rounded-lg font-bold text-naker-900">▲</button>
+                                <button onclick="moveQuizOrder(${q.id}, ${itemIdx}, 1)" class="px-2.5 py-1 bg-naker-200 hover:bg-naker-300 rounded-lg font-bold text-naker-900">▼</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            if (userAnswers[q.id] !== undefined) {
+                const isCorrect = checkAnswerCorrectness(q);
+                const feedbackBg = isCorrect ? 'bg-emerald-50 border-emerald-300 text-emerald-900' : 'bg-rose-50 border-rose-300 text-rose-900';
+                html += `
+                    <div class="p-4 rounded-xl border ${feedbackBg} text-xs sm:text-sm leading-relaxed transition-all">
+                        <div class="font-bold mb-1 flex items-center gap-1.5">
+                            ${isCorrect ? '✅ Umpan Balik: JAWABAN TEPAT!' : '❌ Umpan Balik: KURANG TEPAT'}
+                        </div>
+                        <p class="mt-1"><strong>Penjelasan Konseptual:</strong> ${q.explanation}</p>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+
+            document.getElementById('btn-prev-q').disabled = currentQuestionIdx === 0;
+            document.getElementById('btn-next-q').innerText = currentQuestionIdx === quizData.length - 1 ? 'Selesai & Lihat Dashboard 🎉' : 'Soal Berikutnya →';
+
+            updateScoreHeader();
+        }
+
+        function selectSingleAnswer(qId, optionIdx) {
+            userAnswers[qId] = optionIdx;
+            const q = quizData.find(item => item.id === qId);
+            if (optionIdx === q.correct) {
+                setMascotState('happy', 'Luar biasa! Pemahaman materi perpajakan kamu sangat tepat.');
+            } else {
+                setMascotState('sad', 'Jawaban kurang tepat. Cermati penjelasan konseptualnya.');
+            }
+            renderQuestion();
+        }
+
+        function toggleMultipleAnswer(qId, optionIdx) {
+            let current = userAnswers[qId] || [];
+            if (current.includes(optionIdx)) {
+                current = current.filter(i => i !== optionIdx);
+            } else {
+                current.push(optionIdx);
+            }
+            userAnswers[qId] = current;
+            renderQuestion();
+        }
+
+        function moveQuizOrder(qId, itemIdx, direction) {
+            const q = quizData.find(item => item.id === qId);
+            let currentOrder = userAnswers[qId] || q.items.map((_, i) => i);
+            const pos = currentOrder.indexOf(itemIdx);
+            if (direction === -1 && pos > 0) {
+                const temp = currentOrder[pos];
+                currentOrder[pos] = currentOrder[pos - 1];
+                currentOrder[pos - 1] = temp;
+            } else if (direction === 1 && pos < currentOrder.length - 1) {
+                const temp = currentOrder[pos];
+                currentOrder[pos] = currentOrder[pos + 1];
+                currentOrder[pos + 1] = temp;
+            }
+            userAnswers[qId] = currentOrder;
+            renderQuestion();
+        }
+
+        function checkAnswerCorrectness(q) {
+            const userAns = userAnswers[q.id];
+            if (userAns === undefined) return false;
+
+            if (q.type === 'pg' || q.type === 'bs') {
+                return userAns === q.correct;
+            } else if (q.type === 'pgk') {
+                if (!Array.isArray(userAns)) return false;
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return sortedUser === sortedCorrect;
+            } else if (q.type === 'drag') {
+                return JSON.stringify(userAns) === JSON.stringify(q.correctOrder);
+            }
+            return false;
+        }
+
+        function updateScoreHeader() {
+            let total = 0;
+            quizData.forEach(q => {
+                if (checkAnswerCorrectness(q)) total += 10;
+            });
+            document.getElementById('current-score-display').innerText = total;
+            return total;
+        }
+
+        function navigateQuiz(dir) {
+            if (dir === 1 && currentQuestionIdx < quizData.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else if (dir === -1 && currentQuestionIdx > 0) {
+                currentQuestionIdx--;
+                renderQuestion();
+            } else if (dir === 1 && currentQuestionIdx === quizData.length - 1) {
+                switchTab('tahap4');
+            }
+        }
+
+        function calculateFinalDashboard() {
+            let score = 0;
+            let correct = 0;
+            let wrong = 0;
+
+            let typeCounts = {
+                pg: { correct: 0, total: 4 },
+                pgk: { correct: 0, total: 2 },
+                bs: { correct: 0, total: 3 },
+                drag: { correct: 0, total: 1 }
+            };
+
+            quizData.forEach(q => {
+                const isCorrect = checkAnswerCorrectness(q);
+                if (isCorrect) {
+                    score += 10;
+                    correct++;
+                    if (typeCounts[q.type]) typeCounts[q.type].correct++;
+                } else {
+                    wrong++;
+                }
+            });
+
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('correct-count').innerText = `${correct} Soal`;
+            document.getElementById('wrong-count').innerText = `${wrong} Soal`;
+
+            document.getElementById('type-pg').innerText = `${typeCounts.pg.correct} / ${typeCounts.pg.total}`;
+            document.getElementById('type-pgk').innerText = `${typeCounts.pgk.correct} / ${typeCounts.pgk.total}`;
+            document.getElementById('type-bs').innerText = `${typeCounts.bs.correct} / ${typeCounts.bs.total}`;
+            document.getElementById('type-drag').innerText = `${typeCounts.drag.correct} / ${typeCounts.drag.total}`;
+
+            const reflectiveBox = document.getElementById('reflective-box');
+            reflectiveBox.className = "p-5 rounded-2xl text-xs sm:text-sm text-left leading-relaxed mb-6 border shadow-sm ";
+
+            if (score >= 80) {
+                reflectiveBox.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-900');
+                reflectiveBox.innerHTML = `
+                    <h4 class="font-bold text-base mb-1">🌟 Pakar Pajak & Kebijakan Fiskal Nasional!</h4>
+                    <p>Selamat! Anda telah menguasai konsep perpajakan, klasifikasi pajak pusat & daerah, sistem tarif, serta kepatuhan wajib pajak dengan luar biasa.</p>
+                `;
+                setMascotState('happy', 'Skor kamu luar biasa! Kamu siap menjadi ahli perpajakan masa depan!');
+                triggerConfetti();
+                playSound('finish');
+            } else if (score >= 60) {
+                reflectiveBox.classList.add('bg-naker-50', 'border-naker-300', 'text-naker-900');
+                reflectiveBox.innerHTML = `
+                    <h4 class="font-bold text-base mb-1">👍 Pemahaman Baik</h4>
+                    <p>Capaian Anda sudah baik. Disarankan untuk memperdalam lagi materi perbedaan antara tax avoidance dan tax evasion dalam modul pendalaman.</p>
+                `;
+                setMascotState('happy', 'Hasil yang bagus! Mari pertajam pemahaman materimu.');
+            } else {
+                reflectiveBox.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-900');
+                reflectiveBox.innerHTML = `
+                    <h4 class="font-bold text-base mb-1">📚 Perlu Penguatan Materi</h4>
+                    <p>Jangan berkecil hati! Pelajari kembali penjelasan materi di Tahap 2 tentang pembagian pajak pusat dan daerah, lalu ulangi evaluasi ini.</p>
+                `;
+                setMascotState('thinking', 'Yuk pelajari kembali materi Tahap 2 agar pemahamanmu makin mantap!');
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestionIdx = 0;
+            userAnswers = {};
+            switchTab('tahap1');
+            setMascotState('happy', 'Mari kita mulai eksplorasi materi perpajakan kembali!');
+        }
+
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const colors = ['#38bdf8', '#0284c7', '#0369a1', '#10b981', '#f59e0b'];
+
+            for (let i = 0; i < 120; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedY: Math.random() * 3 + 2,
+                    speedX: Math.random() * 2 - 1,
+                    rotation: Math.random() * 360
+                });
+            }
+
+            let timer = 0;
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    p.rotation += 2.5;
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.rotation * Math.PI) / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctx.restore();
+                });
+
+                timer++;
+                if (timer < 200) {
+                    requestAnimationFrame(render);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+
+            render();
+        }
+
+        window.onload = function() {
+            renderQuestion();
+        };
+    </script>
+</body>
+</html>
